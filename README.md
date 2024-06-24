@@ -74,6 +74,7 @@ This plot [multivariate_logistic_regression_results.png](https://github.com/Foys
 This Excel file ([logistic_regression_results.xlsx](https://github.com/Foysalgebt12/Cerebral-Palsy-CP-Risk-Factors-Analysis/blob/Logistic-Regression-Analysis/logistic_regression_results.xlsx)) contains two sheets:
 
 **3.1. Sheet 1 (Univariate_Results):** Contains the results of univariate logistic regression, including odds ratio, 95% confidence intervals (lower and upper bounds), and p-values for each predictor variable.
+
 **3.4. Sheet 2 (Multivariate_Results):** Contains the results of multivariate logistic regression, similarly including odds ratio, 95% confidence intervals (lower and upper bounds), and p-values for each predictor variable.
 
 ### **4. AUC-ROC Curve Plot:**
