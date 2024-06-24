@@ -148,7 +148,7 @@ The Area Under the Curve (AUC) of the ROC curve provides a single numerical valu
 
 In this study, the ROC curve and its associated AUC score [roc_curve_stylish.png](https://github.com/Foysalgebt12/Cerebral-Palsy-CP-Risk-Factors-Analysis/blob/Feedforward-Neural-Network-(FNN)/roc_curve_stylish.png) provide critical insights into the neural network's capability to differentiate between CP and non-CP cases. The curve's shape and the magnitude of the AUC score validate the model's effectiveness and reliability in clinical prediction tasks related to cerebral palsy risk factors.
 
-### ** 4. SHAP Summary Plot:**
+### 4. SHAP Summary Plot:
 
 The SHAP (SHapley Additive exPlanations) summary plot, accessible via [shap_summary_plot.png](https://github.com/Foysalgebt12/Cerebral-Palsy-CP-Risk-Factors-Analysis/blob/Feedforward-Neural-Network-(FNN)/shap_summary_plot.png), is a critical visualization tool used in this study to interpret the impact of features on the predictions made by the neural network model regarding cerebral palsy (CP) risk factors.
 
