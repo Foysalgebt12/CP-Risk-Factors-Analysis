@@ -56,6 +56,28 @@ print("Univariate Logistic Regression Results:")
 print(univariate_results_df)
 print()
 
+# Plot Univariate Logistic Regression Results
+plt.figure(figsize=(10, 8))
+plt.errorbar(univariate_results_df['Odds Ratio'], np.arange(len(univariate_results_df)),
+             xerr=[univariate_results_df['Odds Ratio'] - univariate_results_df['95% CI Lower'],
+                   univariate_results_df['95% CI Upper'] - univariate_results_df['Odds Ratio']],
+             fmt='o', color='#1f77b4', markersize=8, capsize=5, elinewidth=2, label='Univariate')
+plt.yticks(np.arange(len(univariate_results_df)), univariate_results_df.index)
+plt.xlabel('Odds Ratio')
+plt.title('Univariate Logistic Regression Results')
+plt.axvline(x=1, color='gray', linestyle='--')
+plt.legend(loc='upper right')
+plt.xscale('log')
+
+for i, sig in enumerate(univariate_results_df['p-value'] < 0.05):
+    if sig:
+        plt.plot(univariate_results_df.loc[univariate_results_df.index[i], 'Odds Ratio'], i,
+                 marker='*', markersize=12, color='black')
+
+plt.tight_layout()
+plt.savefig('univariate_logistic_regression_results.png', dpi=300)
+plt.show()
+
 # Multivariate Logistic Regression
 logit_model = sm.Logit(y, X.drop(columns=['const']))
 result = logit_model.fit(disp=False)
@@ -74,62 +96,32 @@ print("Multivariate Logistic Regression Results:")
 print(multivariate_results_df)
 print()
 
-# Identify Significant Predictors
-alpha = 0.05
-univariate_results_df['Significant'] = univariate_results_df['p-value'] < alpha
-multivariate_results_df['Significant'] = multivariate_results_df['p-value'] < alpha
+# Plot Multivariate Logistic Regression Results
+plt.figure(figsize=(10, 8))
+plt.errorbar(multivariate_results_df['Odds Ratio'], np.arange(len(multivariate_results_df)),
+             xerr=[multivariate_results_df['Odds Ratio'] - multivariate_results_df['95% CI Lower'],
+                   multivariate_results_df['95% CI Upper'] - multivariate_results_df['Odds Ratio']],
+             fmt='o', color='#d62728', markersize=8, capsize=5, elinewidth=2, label='Multivariate')
+plt.yticks(np.arange(len(multivariate_results_df)), multivariate_results_df.index)
+plt.xlabel('Odds Ratio')
+plt.title('Multivariate Logistic Regression Results')
+plt.axvline(x=1, color='gray', linestyle='--')
+plt.legend(loc='upper right')
+plt.xscale('log')
+
+for i, sig in enumerate(multivariate_results_df['p-value'] < 0.05):
+    if sig:
+        plt.plot(multivariate_results_df.loc[multivariate_results_df.index[i], 'Odds Ratio'], i,
+                 marker='*', markersize=12, color='black')
+
+plt.tight_layout()
+plt.savefig('multivariate_logistic_regression_results.png', dpi=300)
+plt.show()
 
 # Save Results to Excel
 with pd.ExcelWriter('logistic_regression_results.xlsx') as writer:
     univariate_results_df.to_excel(writer, sheet_name='Univariate_Results')
     multivariate_results_df.to_excel(writer, sheet_name='Multivariate_Results')
-
-# Create the Combined Forest Plot Function
-def create_combined_figure(univariate_results_df, multivariate_results_df, filename):
-    fig, axs = plt.subplots(2, 1, figsize=(10, 12))
-
-    # Univariate Plot
-    axs[0].errorbar(univariate_results_df['Odds Ratio'], np.arange(len(univariate_results_df)),
-                    xerr=[univariate_results_df['Odds Ratio'] - univariate_results_df['95% CI Lower'],
-                          univariate_results_df['95% CI Upper'] - univariate_results_df['Odds Ratio']],
-                    fmt='o', color='#1f77b4', markersize=8, capsize=5, elinewidth=2, label='Univariate')
-    axs[0].set_yticks(np.arange(len(univariate_results_df)))
-    axs[0].set_yticklabels(univariate_results_df.index)
-    axs[0].set_xlabel('Odds Ratio')
-    axs[0].set_title('Univariate Logistic Regression Results', fontsize=14)
-    axs[0].axvline(x=1, color='gray', linestyle='--')
-    axs[0].legend(loc='upper right')
-    axs[0].set_xscale('log')
-
-    for i, sig in enumerate(univariate_results_df['Significant']):
-        if sig:
-            axs[0].plot(univariate_results_df.loc[univariate_results_df.index[i], 'Odds Ratio'], i,
-                        marker='*', markersize=12, color='black')
-
-    # Multivariate Plot
-    axs[1].errorbar(multivariate_results_df['Odds Ratio'], np.arange(len(multivariate_results_df)),
-                    xerr=[multivariate_results_df['Odds Ratio'] - multivariate_results_df['95% CI Lower'],
-                          multivariate_results_df['95% CI Upper'] - multivariate_results_df['Odds Ratio']],
-                    fmt='o', color='#d62728', markersize=8, capsize=5, elinewidth=2, label='Multivariate')
-    axs[1].set_yticks(np.arange(len(multivariate_results_df)))
-    axs[1].set_yticklabels(multivariate_results_df.index)
-    axs[1].set_xlabel('Odds Ratio')
-    axs[1].set_title('Multivariate Logistic Regression Results', fontsize=14)
-    axs[1].axvline(x=1, color='gray', linestyle='--')
-    axs[1].legend(loc='upper right')
-    axs[1].set_xscale('log')
-
-    for i, sig in enumerate(multivariate_results_df['Significant']):
-        if sig:
-            axs[1].plot(multivariate_results_df.loc[multivariate_results_df.index[i], 'Odds Ratio'], i,
-                        marker='*', markersize=12, color='black')
-
-    plt.tight_layout()
-    plt.savefig(filename, dpi=300, bbox_inches='tight')
-    plt.show()
-
-# Call the function to create combined forest plot
-create_combined_figure(univariate_results_df, multivariate_results_df, 'combined_forest_plot_logistic_regression_results.png')
 
 # Calculate AUC-ROC Curve
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
