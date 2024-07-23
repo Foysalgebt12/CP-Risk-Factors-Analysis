@@ -1,4 +1,4 @@
-# Cerebral-Palsy-CP-Risk-Factors-Analysis
+# Risk Factors Analysis of Pediatric Cerebral Palsy (CP)
 Cerebral Palsy (CP) is a group of permanent movement disorders that appear in early childhood, primarily affecting body movement and muscle coordination. Understanding the risk factors associated with CP is crucial for early diagnosis and intervention, which can significantly improve the quality of life for affected individuals. Analyzing risk factors for CP involves a comprehensive investigation into the factors that contribute to the development of this neurological condition in children. This analysis typically encompasses a multidimensional approach  to elucidate the complex etiology of CP. 
 
 Objective
