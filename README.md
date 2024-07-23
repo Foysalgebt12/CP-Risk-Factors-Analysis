@@ -1,5 +1,29 @@
 # Cerebral-Palsy-CP-Risk-Factors-Analysis
- Analyzing risk factors for Cerebral Palsy (CP) involves a comprehensive investigation into the factors that contribute to the development of this neurological condition in children. This analysis typically encompasses a multidimensional approach  to elucidate the complex etiology of CP. 
+Cerebral Palsy (CP) is a group of permanent movement disorders that appear in early childhood, primarily affecting body movement and muscle coordination. Understanding the risk factors associated with CP is crucial for early diagnosis and intervention, which can significantly improve the quality of life for affected individuals. Analyzing risk factors for CP involves a comprehensive investigation into the factors that contribute to the development of this neurological condition in children. This analysis typically encompasses a multidimensional approach  to elucidate the complex etiology of CP. 
+
+Objective
+The primary objective of this study is to identify and analyze the risk factors that differentiate individuals with CP from those without the condition (Non-CP). By comparing these two groups, we aim to uncover significant predictors that could potentially aid in the early detection and prevention of CP.
+
+Methods
+We utilized a comprehensive dataset comprising various demographic, prenatal, and perinatal variables. The data was processed and analyzed using several methods, including machine learning models and logistic regression.
+
+Logistic Regression
+Logistic regression modeling was performed to identify the most significant predictors of CP. This approach included:
+
+Feature Selection: Identifying the most relevant variables through statistical methods.
+Multicollinearity Assessment: Using Variance Inflation Factor (VIF) to ensure no multicollinearity issues were present, with acceptable VIF values being less than 10.
+Goodness-of-Fit Evaluation: The Hosmer-Lemeshow test was conducted to evaluate the model's goodness-of-fit.
+The performance of the logistic regression model was also assessed using metrics such as AUC-ROC score, precision, recall, and F1-score.
+
+Machine Learning Models
+We employed Random Forest, XGBoost, and Support Vector Machine (SVM) classifiers. Each model was built with pipelines that included essential preprocessing steps like imputation and scaling of features.
+
+To ensure the robustness of our models, we employed a five-fold cross-validation method for validation and conducted hyperparameter tuning using both grid search and random search techniques. The performance of the models was evaluated based on accuracy, AUC-ROC, precision, recall, and F1-score metrics.
+
+Deep Learning Model
+A deep learning-based feedforward neural network (FFN) model was developed to identify risk factors. This model was trained and validated over 100 epochs. The training accuracy and validation accuracy were monitored, along with the corresponding losses.
+
+
 
 
 
